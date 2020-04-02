@@ -1,6 +1,6 @@
 # vblog-frontend
 
-> vblog 前台页面
+> vblog 前台用户页面
 
 ## Build Setup
 
