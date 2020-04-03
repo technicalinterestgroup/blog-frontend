@@ -20,7 +20,7 @@
                 </div>
               </iv-col>
             </iv-row>
-             <p class="desc">{{ask.description | textLineBreak(70) }}<a  @click="selectMenu('/'+ask.userName+'/ask/'+article.id)"> 查看更多
+             <p class="desc">{{ask.description | textLineBreak(70) }}<a  @click="selectMenu('/'+ask.userName+'/ask/'+ask.id)"> 查看更多
               <iv-icon type="arrow-right-b"></iv-icon>
             </a>
             </p>

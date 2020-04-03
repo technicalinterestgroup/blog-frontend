@@ -20,8 +20,8 @@
         </p>
       </iv-col>
     </iv-row>
-    <p class="abstract" v-if="article.submit">
-      {{article.submit}}
+    <p class="abstract" v-if="article.description">
+      {{article.description}}
     </p>
   </div>
 </template>
