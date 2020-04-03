@@ -104,10 +104,10 @@ export default {
             .then(({data}) => {
               if (data.code === '000000') {
                 this.article = {}
-                // this.$message.success('保存博文成功')
+                this.$Message.success('保存博文成功')
                 this.$router.push({path: '/' + this.userName + '/article/' + data.data})
               } else {
-                this.$message.error(data.msg)
+                this.$Message.error(data.msg)
               }
             })
         } else {
@@ -128,7 +128,7 @@ export default {
           if (data.code === '000000') {
             this.$refs.md.$img2Url(pos, data.data)
           } else {
-            this.$message.warn(data.msg)
+            this.$Message.warning(data.msg)
           }
         })
     },
