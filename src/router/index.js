@@ -10,7 +10,7 @@ import CommonFooter from '@/components/footer/CommonFooter'
 // 首页
 import IndexeContent from '@/components/content/IndexContent'
 import BlogContent from '@/components/content/BlogContent'
-import AskContent from '@/components/content/AskContent'
+// import AskContent from '@/components/content/AskContent'
 import HomeContent from '@/components/content/HomeContent'
 import ArticleContent from '@/components/content/ArticleContent'
 import AskDetailContent from '@/components/content/AskDetailContent'
@@ -117,7 +117,7 @@ let router = new Router({
           name: 'Ask',
           components: {
             header: SimpleHeader,
-            content: AskContent,
+            content: test,
             footer: CommonFooter
           },
           meta: {

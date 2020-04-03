@@ -130,7 +130,7 @@ export default {
             margin-left 1px
             vertical-align top
             color $default-background-color
-            background $iview-secondary-warning-color
+            background #FF3030
             cursor pointer
           a
             color $color-typegraphy-title

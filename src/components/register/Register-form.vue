@@ -115,7 +115,7 @@ export default {
       console.log('邮箱格式校验')
       var regEmail = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
       if (this.form.email !== '' && !regEmail.test(this.form.email)) {
-        this.$message({
+        this.$Message({
           message: '邮箱格式不正确',
           type: 'error'
         })
