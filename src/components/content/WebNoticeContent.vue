@@ -3,12 +3,12 @@
     <iv-row>
       <iv-col :xs="24" :sm="24" :md="24" :lg="17">
         <div class="layout-left">
-          <article-page-header :article="article"></article-page-header>
-          <article-page-content>
+          <notice-page-header :article="article"></notice-page-header>
+          <notice-page-content>
             <article id="article-main-page" class="typo container" slot="content" ref="article"
                      v-html="article.contentFormat">
             </article>
-          </article-page-content>
+          </notice-page-content>
           </div>
           <br>
 
@@ -31,9 +31,9 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-import ArticlePageHeader from '@/components/views/Article/ArticlePageHeader'
-import ArticlePageContent from '@/components/views/Article/ArticlePageContent'
-import ArticlePageFooter from '@/components/views/Article/ArticlePageFooter'
+import NoticePageHeader from '@/components/views/Notice/NoticePageHeader'
+import NoticePageContent from '@/components/views/Notice/NoticePageContent'
+import NoticePageFooter from '@/components/views/Notice/NoticePageFooter'
 import AboutWeb from '@/components/views/AboutWeb'
 import SideToc from '@/components/views/SideToc'
 import TOC from '@/common/js/MarkdownToc'
@@ -49,9 +49,9 @@ export default {
     }
   },
   components: {
-    'article-page-header': ArticlePageHeader,
-    'article-page-content': ArticlePageContent,
-    'article-page-footer': ArticlePageFooter,
+    'notice-page-header': NoticePageHeader,
+    'notice-page-content': NoticePageContent,
+    'notice-page-footer': NoticePageFooter,
     'about': AboutWeb,
     'side-toc': SideToc
   },
@@ -72,9 +72,9 @@ export default {
     getNotice (noticeId) {
       // 查询文章详情
       this.$axios.get('/view/notice/' + noticeId, {
-        // params: {
-        //   userName: this.userName
-        // }
+        params: {
+          userName: this.userName
+        }
       }).then(({data}) => {
         if (data && data.code === '000000') {
           this.article = data.data
