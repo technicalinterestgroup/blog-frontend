@@ -45,7 +45,7 @@ export default {
     likePost (post) {
       this.$axios.get('/like/new/' + post.id, {
         params: {
-          type: 1
+          type: 3
         }
       }).then(({data}) => {
         if (data && data.code === '000000') {
@@ -65,7 +65,7 @@ export default {
     delLikePost (post, doLike) {
       this.$axios.get('/like/del/' + post.id, {
         params: {
-          type: 1
+          type: 3
         }
       }).then(({data}) => {
         if (data && data.code === '000000') {
@@ -85,7 +85,7 @@ export default {
     collectionPost (post) {
       this.$axios.get('/collection/new/' + post.id, {
         params: {
-          type: 1
+          type: 3
         }
       }).then(({data}) => {
         if (data && data.code === '000000') {
@@ -104,7 +104,7 @@ export default {
     delCollectionPost (post, doLike) {
       this.$axios.get('/collection/del/' + post.id, {
         params: {
-          type: 1
+          type: 3
         }
       }).then(({data}) => {
         if (data && data.code === '000000') {
