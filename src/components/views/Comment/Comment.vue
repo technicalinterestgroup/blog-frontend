@@ -108,8 +108,6 @@ export default {
         if (data.code === '000000') {
           this.comments = data.data.fristCommnetList
           this.replys = data.data.refCommnet
-        } else {
-          this.$Message.warning(data.msg)
         }
       })
     },

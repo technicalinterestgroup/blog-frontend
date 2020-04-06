@@ -22,12 +22,12 @@ export default {
       theme3: 'light',
       authList: [
         {
-          url: '/like',
+          url: 'like',
           icon: '',
           authName: '点赞通知'
         },
         {
-          url: '/comment',
+          url: 'comment',
           icon: '',
           authName: '评论通知'
         }

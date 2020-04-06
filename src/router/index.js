@@ -32,12 +32,12 @@ import MyNoticeContent from '@/components/content/MyNoticeContent'
 import WebNoticeContent from '@/components/content/WebNoticeContent'
 
 import UserInfo from '@/components/views/System/UserInfo'
-import Favorite from '@/components/views/System/Favorite'
 import PassWord from '@/components/views/System/PassWord'
 import Email from '@/components/views/System/Email'
 import ArticleAddOrUpdate from '@/components/views/System/ArticleAddOrUpdate'
 import Category from '@/components/views/System/Category'
 import BlogSet from '@/components/views/System/BlogSet'
+import CollectTable from '@/components/views/System/CollectTable'
 import LikeTable from '@/components/views/Notice/LikeTable'
 import CommentTable from '@/components/views/Notice/CommentTable'
 import test from '@/components/content/test'
@@ -315,9 +315,9 @@ let router = new Router({
               }
             },
             {
-              path: 'favorite',
-              name: 'favorite',
-              component: Favorite,
+              path: 'collect',
+              name: 'collect',
+              component: CollectTable,
               meta: {
                 title: '我的收藏 | VBlog 创建你自己的博客'
               }
