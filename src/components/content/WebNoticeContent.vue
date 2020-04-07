@@ -11,9 +11,8 @@
           </notice-page-content>
           </div>
           <br>
-
           <div class="layout-left">
-          <!-- <article-page-footer :postId="noticeId"></article-page-footer> -->
+          <notice-page-footer :noticeId="noticeId"  :type="type"></notice-page-footer>
         </div>
       </iv-col>
       <iv-col :xs="0" :sm="0" :md="0" :lg="7">
@@ -45,7 +44,8 @@ export default {
     return {
       article: {},
       userName: '',
-      noticeId: this.$route.params.noticeId
+      noticeId: this.$route.params.noticeId,
+      type: 3
     }
   },
   components: {

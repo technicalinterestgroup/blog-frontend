@@ -34,15 +34,6 @@
             @clickAvatar="handleClickAvatar(comment)"
             @clickAuthor="handleClickAuthor(comment)"
             @addReply="handleAddReply(comment)">
-            <!-- <replyItem v-for="reply in replys[comment.id]"
-            :key="reply.id" :userName="reply.userName"
-            :avatar="reply.avatar"
-            :commentContent="reply.commentContent"
-            :createTime="reply.createTime"
-            :form="form"
-            :inputFlag="false"
-            @addReply="handleAddReply(comment)">
-            </replyItem> -->
             <br>
           </commentsItem>
           <br>
@@ -61,13 +52,15 @@ export default {
     'panel': Panel
   },
   props: {
-    articleId: String
+    articleId: String,
+    type: Number
   },
   data () {
     return {
       mainform: {
         commentContent: '',
-        articleId: ''
+        articleId: '',
+        type: this.type
       },
       comments: [],
       replys: {},
@@ -82,8 +75,7 @@ export default {
     }
   },
   created () {
-    // this.listComments()
-    console.log('this.articleId' + this.articleId)
+    console.log('type' + this.type)
     this.getCommentList(this.articleId)
   },
   watch: {
@@ -103,7 +95,11 @@ export default {
       // item.inputFlag = true
     },
     getCommentList (articleId) {
+      console.log('type' + this.type)
       this.$axios.get('/view/comment/list/' + articleId, {
+        params: {
+          type: this.type
+        }
       }).then(({data}) => {
         if (data.code === '000000') {
           this.comments = data.data.fristCommnetList

@@ -2,7 +2,7 @@
   <div class="article-page-footer">
     <!-- <license-tag></license-tag> -->
     <!-- <social-section :type="'Article'" :postId="postId"></social-section> -->
-    <comment :articleId="articleId"></comment>
+    <comment :articleId="noticeId" :type="type"></comment>
   </div>
 </template>
 
@@ -17,7 +17,8 @@ export default {
     'comment': Comment
   },
   props: {
-    articleId: String
+    noticeId: String,
+    type: Number
   }
 }
 </script>

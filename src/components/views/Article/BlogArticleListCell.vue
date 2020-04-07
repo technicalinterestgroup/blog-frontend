@@ -13,7 +13,7 @@
               <!-- <iv-tag :color="tag.id | mapTagColor" :key="tag.id" type="border" v-for ="(tag) in article.tagList">{{tag.name}}</iv-tag> -->
               <iv-tag v-if="article.tagId" :color="article.tagId | mapTagColor"  type="border" >{{article.tagCN}}</iv-tag>
             </div>
-             <p class="desc">{{article.submit | filterHtml | textLineBreak(70) }}
+             <p class="desc">{{article.submit | filterHtml | textLineBreak(150) }}
                <a @click="selectMenu('/'+article.userName+'/article/'+article.id)"> 查看更多
                <iv-icon type="arrow-right-b"></iv-icon>
                </a>
