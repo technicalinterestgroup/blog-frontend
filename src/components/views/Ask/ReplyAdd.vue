@@ -35,21 +35,21 @@ export default {
           superscript: true, // 上角标
           subscript: true, // 下角标
           quote: true, // 引用
-          ol: true, // 有序列表
-          ul: true, // 无序列表
-          link: true, // 链接
+          ol: false, // 有序列表
+          ul: false, // 无序列表
+          link: false, // 链接
           imagelink: true, // 图片链接
           code: true, // code
-          table: true, // 表格
+          table: false, // 表格
           fullscreen: true, // 全屏编辑
           readmodel: true, // 沉浸式阅读
           htmlcode: true, // 展示html源码
-          help: true, // 帮助
+          help: false, // 帮助
           /* 1.3.5 */
-          undo: true, // 上一步
-          redo: true, // 下一步
-          trash: true, // 清空
-          save: true, // 保存（触发events中的save事件）
+          undo: false, // 上一步
+          redo: false, // 下一步
+          trash: false, // 清空
+          save: false, // 保存（触发events中的save事件）
           /* 1.4.2 */
           navigation: true, // 导航目录
           /* 2.1.8 */

@@ -8,7 +8,7 @@
     <iv-row>
       <iv-col :xs="24" :sm="10" :md="10" :lg="10" style="padding-left: 0;padding-right: 0;">
         <p class="info"><span class="author">By / <a >{{article.userName}}</a></span><span
-                class="publish-time"> <a ><iv-icon type="ios-create"></iv-icon>  {{article.createTime}}</a></span></p>
+                class="publish-time"> <a ><iv-icon type="ios-create"></iv-icon>  {{article.updateTime}}</a></span></p>
       </iv-col>
       <iv-col :xs="24" :sm="14" :md="14" :lg="14" style="padding-left: 0;padding-right: 0;">
         <p class="operate_info">

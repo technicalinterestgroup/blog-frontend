@@ -5,7 +5,7 @@
         <iv-col :xs="24" :sm="24" :md="24" :lg="24" :order="textOrderType" style="padding-left: 0;padding-right: 0;">
           <div class="text-wrapper">
              <iv-row>
-              <iv-col :xs="20" :sm="20" :md="20" :lg="20">
+              <iv-col :xs="19" :sm="20" :md="20" :lg="20">
                 <h4 class="title">
                   <a  @click="selectMenu('/'+ask.userName+'/ask/'+ask.id)">{{ask.title}}</a>
                   <span class="special" v-if="ask.state===1" title="已解决">已解决</span>
@@ -14,13 +14,13 @@
                   <iv-tag v-if="ask.tagId" :color="ask.tagId | mapTagColor"  type="border" >{{ask.tagCN}}</iv-tag>
                 </div>
               </iv-col>
-              <iv-col :xs="4" :sm="4" :md="4" :lg="4" >
+              <iv-col :xs="5" :sm="4" :md="4" :lg="4" >
                 <div style="float:right"><span class="special"  title="回答数">
                   回答 {{ask.replyCount}}</span>
                 </div>
               </iv-col>
             </iv-row>
-             <p class="desc">{{ask.description | textLineBreak(70) }}<a  @click="selectMenu('/'+ask.userName+'/ask/'+ask.id)"> 查看更多
+             <p class="desc">{{ask.description | textLineBreak(150) }}<a  @click="selectMenu('/'+ask.userName+'/ask/'+ask.id)"> 查看更多
               <iv-icon type="arrow-right-b"></iv-icon>
             </a>
             </p>

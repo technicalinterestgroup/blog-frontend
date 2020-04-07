@@ -13,7 +13,7 @@
           <br>
 
           <div class="layout-left">
-          <article-page-footer :articleId="articleId"></article-page-footer>
+          <article-page-footer :articleId="articleId" :type="type"></article-page-footer>
         </div>
       </iv-col>
       <iv-col :xs="0" :sm="0" :md="0" :lg="7">
@@ -60,7 +60,8 @@ export default {
       article: {},
       userName: '',
       blogSet: {},
-      articleId: this.$route.params.articleId
+      articleId: this.$route.params.articleId,
+      type: 1
     }
   },
   components: {

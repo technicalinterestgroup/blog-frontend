@@ -77,7 +77,6 @@ export default {
   created: function () {
     // this.getUserName()
     this.getArticle(this.askId)
-    // this.getBlogSet(this.userName)
   },
   methods: {
     addCodeLineNumber () {
@@ -143,15 +142,7 @@ export default {
           var jsonObj = JSON.parse(localStorage.getItem('userInfo'))
           this.userName = jsonObj.userName
         }
-      },
-      getBlogSet (userName) {
-      this.$axios.get('/view/blog/info/' + userName, {
-      }).then(({data}) => {
-        if (data && data.code === '000000') {
-          this.blogSet = data.data
-        }
-      })
-    }
+      }
     }
 
   }
