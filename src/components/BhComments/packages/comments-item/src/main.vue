@@ -72,7 +72,8 @@ export default {
     replys: Array,
     articleId: String,
     id: Number,
-    levle: Number
+    levle: Number,
+    type: Number
 
   },
   data () {
@@ -81,7 +82,8 @@ export default {
       form: {
         commentContent: '',
         articleId: '',
-        parentId: ''
+        parentId: '',
+        type: this.type
       },
       rules: { // 校验表单规则
         commentContent: [ // FormItem标签中的 prop 属性预期值
@@ -133,8 +135,8 @@ export default {
           this.$axios.post('/comment/new', this.form).then(({data}) => {
             if (data.code === '000000') {
               this.$Message.success('评论成功！')
+              this.$emit('refreshcommentlist', this.articleId)
               this.form = {}
-              this.$emit('getCommentList', this.articleId)
             } else if (data.code === '000005') {
               this.$Message.warning(data.msg)
             } else {

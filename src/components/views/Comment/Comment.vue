@@ -29,10 +29,12 @@
             :articleId="articleId"
             :id="comment.id"
             :levle="comments.length-index"
+            :type="type"
             :replys="(replys[comment.id] && replys[comment.id].length > 0)?replys[comment.id]:[]"
             :hasReply="replys[comment.id] && replys[comment.id].length > 0"
             @clickAvatar="handleClickAvatar(comment)"
             @clickAuthor="handleClickAuthor(comment)"
+            @refreshcommentlist="getCommentList"
             @addReply="handleAddReply(comment)">
             <br>
           </commentsItem>
