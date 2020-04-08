@@ -19,19 +19,6 @@
         <div class="layout-right">
            <br>
           <about></about>
-           <iv-affix :offset-top="60">
-            <side-toc style="margin-top: 15px;"></side-toc>
-          </iv-affix>
-          <br>
-           <new-article v-if="blogSet.vNew"></new-article>
-           <br>
-          <recommend v-if="blogSet.vRecommend"></recommend>
-           <br>
-          <hot-read v-if="blogSet.vHot"></hot-read>
-          <br>
-          <archive v-if="blogSet.vArchive"></archive>
-          <br>
-          <tag-wall v-if="blogSet.vTag" style="margin-top: 15px;"></tag-wall>
           <br>
         </div>
       </iv-col>
@@ -43,16 +30,9 @@ import AskPageHeader from '@/components/views/Ask/AskPageHeader'
 import AskPageContent from '@/components/views/Ask/AskPageContent'
 import AskPageFooter from '@/components/views/Ask/AskPageFooter'
 import About from '@/components/views/About'
-import TagWall from '@/components/views/TagWall'
-import SideToc from '@/components/views/SideToc'
-import Recommend from '@/components/views/Recommend'
-import HotRead from '@/components/views/HotRead'
 import TOC from '@/common/js/MarkdownToc'
 // TOC滚动监听
 import TocScrollSpy from '@/common/js/TocScrollSpy'
-import NewArticle from '@/components/views/NewArticle'
-import Archive from '@/components/views/Archive'
-
 export default {
   data () {
     return {
@@ -66,13 +46,7 @@ export default {
     'ask-page-header': AskPageHeader,
     'ask-page-content': AskPageContent,
     'ask-page-footer': AskPageFooter,
-    'about': About,
-    'tag-wall': TagWall,
-    'side-toc': SideToc,
-    'recommend': Recommend,
-    'hot-read': HotRead,
-    'new-article': NewArticle,
-    'archive': Archive
+    'about': About
   },
   created: function () {
     // this.getUserName()

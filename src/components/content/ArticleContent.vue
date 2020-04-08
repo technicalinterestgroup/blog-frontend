@@ -147,7 +147,7 @@ export default {
         }
       },
       getBlogSet (userName) {
-      this.$axios.get('/view/blog/info/' + userName, {
+        this.$axios.get('/view/blog/info/' + userName, {
       }).then(({data}) => {
         if (data && data.code === '000000') {
           this.blogSet = data.data

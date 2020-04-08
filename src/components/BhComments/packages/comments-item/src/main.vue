@@ -135,8 +135,8 @@ export default {
           this.$axios.post('/comment/new', this.form).then(({data}) => {
             if (data.code === '000000') {
               this.$Message.success('评论成功！')
-              this.$emit('refreshcommentlist', this.articleId)
-              this.form = {}
+              this.$emit('refreshcommentlist', this.form.articleId)
+              this.form.commentContent = ''
             } else if (data.code === '000005') {
               this.$Message.warning(data.msg)
             } else {

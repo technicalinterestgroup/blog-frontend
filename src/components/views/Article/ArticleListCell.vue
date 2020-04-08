@@ -95,7 +95,6 @@ export default {
     selectMenu (url) {
       console.log('url' + url)
       this.$router.push(url)
-      // .catch(data => {})
     }
   }
 }

@@ -13,7 +13,7 @@
       <iv-col :xs="24" :sm="14" :md="14" :lg="14" style="padding-left: 0;padding-right: 0;">
         <p class="operate_info">
           <span class="readings"><a ><iv-icon type="ios-eye-outline"></iv-icon> {{article.readCount}} 阅读</a> |</span>
-          <span class="collection" v-if=!article.vCollection><a @click="collectionPost(article)"><iv-icon type="ios-star"></iv-icon> 收藏</a></span>
+          <!-- <span class="collection" v-if=!article.vCollection><a @click="collectionPost(article)"><iv-icon type="ios-star"></iv-icon> 收藏</a></span> -->
           <span class="collection" v-if=article.vCollection><a @click="delCollectionPost(article)"><iv-icon type="ios-star" color="#EE2C2C"></iv-icon> 取消收藏</a></span>
         </p>
       </iv-col>
