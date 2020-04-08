@@ -16,8 +16,8 @@
             </ask-page-content>
              </div>
              <p class="operate_info">
-                    <span class="userName"><a  @click="selectMenu('/'+article.userName)"><iv-icon type="ios-contact"></iv-icon>  {{article.userName}}   </a></span>
-                    <span class="publish-time"><a><iv-icon type="ios-create" ></iv-icon>  {{article.createTime}} </a></span>
+                    <span class="userName"><a  @click="selectMenu('/'+article.userName)"><iv-icon type="ios-contact"></iv-icon>  {{article.userName}}</a></span>
+                    <span class="publish-time"><a><iv-icon type="ios-create"></iv-icon>{{article.createTime}} </a></span>
                     <span class="likes" v-if=!article.vLike><a @click="likePost(article)"><iv-icon type="ios-thumbs-up"></iv-icon> {{article.likeCount}} 点赞</a></span>
                     <span class="likes" v-if=article.vLike><a ><iv-icon type="ios-thumbs-up" color="#F78F8F"></iv-icon> {{article.likeCount}} 已赞</a></span>
               </p>

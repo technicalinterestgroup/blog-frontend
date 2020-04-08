@@ -11,6 +11,19 @@
             <iv-form-item  prop="content" style="height:auto">
               <mavon-editor  style="min-height: 400px" ref=md v-model="article.content" @imgAdd="imgAdd" @change="mavonChangeHandle" :toolbars="markdown.toolbars"></mavon-editor>
             </iv-form-item>
+            <iv-form-item label="标签" prop="tagId">
+            <Select
+              style="width: 40%"
+              v-model="article.tagId" >
+              <Option
+                v-for="item in tagList"
+                  :key="item.id"
+                :label="item.name"
+                :value="item.id">
+                {{ item.name }}
+              </Option>
+            </Select>
+          </iv-form-item>
             <iv-form-item>
               <iv-button type="primary" @click="saveArticle()">保存</iv-button>
               <iv-button @click="cancel()">重置</iv-button>
@@ -93,6 +106,7 @@ export default {
         }
       },
       article: {},
+      tagList: [],
       rules: {
         title: [
           {required: true, message: '标题不能为空', trigger: 'change'}
@@ -104,8 +118,18 @@ export default {
     }
   },
   created () {
+    this.init()
   },
   methods: {
+    init () {
+      this.$axios.get('/category/tag/dic', {
+      }).then(({data}) => {
+        if (data && data.code === '000000') {
+          // this.categoryOptions = treeDataTranslate(data.categoryList)
+          this.tagList = data.data
+        }
+      })
+    },
     // 保存文章
     saveArticle () {
       this.$refs['articleForm'].validate((valid) => {
