@@ -20,6 +20,8 @@
            <br>
           <about></about>
           <br>
+          <new-ask></new-ask>
+          <br>
         </div>
       </iv-col>
     </iv-row>
@@ -30,6 +32,7 @@ import AskPageHeader from '@/components/views/Ask/AskPageHeader'
 import AskPageContent from '@/components/views/Ask/AskPageContent'
 import AskPageFooter from '@/components/views/Ask/AskPageFooter'
 import About from '@/components/views/About'
+import NewAsk from '@/components/views/NewAsk'
 import TOC from '@/common/js/MarkdownToc'
 // TOC滚动监听
 import TocScrollSpy from '@/common/js/TocScrollSpy'
@@ -46,7 +49,8 @@ export default {
     'ask-page-header': AskPageHeader,
     'ask-page-content': AskPageContent,
     'ask-page-footer': AskPageFooter,
-    'about': About
+    'about': About,
+    'new-ask': NewAsk
   },
   created: function () {
     // this.getUserName()

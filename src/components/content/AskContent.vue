@@ -14,11 +14,7 @@
         <div class="layout-right">
           <iv-button @click="selectMenu('question')" style="width:100%;margin-bottom:10px;background-color:#1586C2;color :#FFFFFF;font-weight: bold;">我要提问</iv-button>
            <br>
-          <new-article></new-article>
-           <br>
-          <recommend></recommend>
-           <br>
-          <hot-read></hot-read>
+          <new-ask></new-ask>
            <br>
         </div>
       </iv-col>
@@ -28,20 +24,16 @@
 
 <script type="text/ecmascript-6">
 import AskListCell from '@/components/views/Ask/AskListCell'
-import Recommend from '@/components/views/Recommend'
 import BrowseMore from '@/components/views/BrowseMore'
-import HotRead from '@/components/views/HotRead'
 import {DefaultFilterList} from '@/common/js/const'
-import NewArticle from '@/components/views/NewArticle'
+import NewAsk from '@/components/views/NewAsk'
 import AskCarousel from '@/components/views/Carousel/AskCarousel'
 import merge from 'lodash/merge' // 合并对象工具
 export default {
   components: {
     'askListCell': AskListCell,
-    'recommend': Recommend,
     'browse-more': BrowseMore,
-    'hot-read': HotRead,
-    'new-article': NewArticle,
+    'new-ask': NewAsk,
     'ask-carousel': AskCarousel
   },
   data () {
