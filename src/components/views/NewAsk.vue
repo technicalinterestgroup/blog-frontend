@@ -26,7 +26,7 @@
               <p class="info">
                 <span class="time">{{newArticle.createTime }}</span>
                 <span class="user" v-if=!isUserHomeFlag><a @click="selectMenu('/' +newArticle.userName)"><iv-icon type="ios-contact"></iv-icon> {{newArticle.userName}} </a></span>
-                <span class="reply" v-if=isUserHomeFlag><a ><iv-icon type="heart"></iv-icon>回答 {{newArticle.replyCount}} </a></span>
+                <span class="reply" v-if=isUserHomeFlag><a ><iv-icon type="heart"></iv-icon>回答 {{newArticle.readCount}} </a></span>
                 <!-- <span class="comments"><a ><iv-icon type="compose"></iv-icon> {{hotRead.commentNum}} </a></span>
                 <span class="readings"><a ><iv-icon type="eye"></iv-icon> {{hotRead.readNum}} </a></span> -->
               </p>

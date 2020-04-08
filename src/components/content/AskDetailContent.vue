@@ -53,7 +53,6 @@ export default {
     'new-ask': NewAsk
   },
   created: function () {
-    // this.getUserName()
     this.getArticle(this.askId)
   },
   methods: {
