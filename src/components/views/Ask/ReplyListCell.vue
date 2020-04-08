@@ -2,33 +2,26 @@
   <div class="article-cell">
     <a>
       <iv-row type="flex">
-        <iv-col :xs="24" :sm="24" :md="24" :lg="24" style="padding-left: 0;padding-right: 0;">
+        <iv-col :xs="24" :sm="24" :md="24" :lg="24"  style="padding-left: 0;padding-right: 0;">
           <div class="text-wrapper">
-             <iv-row>
-              <iv-col :xs="19" :sm="20" :md="20" :lg="20">
-                <h4 class="title">
-                  <a  @click="selectMenu('/'+ask.userName+'/ask/'+ask.id)">{{ask.title}}</a>
-                  <span class="special" v-if="ask.state===1" title="已解决">已解决</span>
-                </h4>
-                <div class="tags">
-                  <iv-tag v-if="ask.tagId" :color="ask.tagId | mapTagColor"  type="border" >{{ask.tagCN}}</iv-tag>
-                </div>
-              </iv-col>
-              <iv-col :xs="5" :sm="4" :md="4" :lg="4" >
-                <div style="float:right"><span class="special"  title="回答数">
-                  回答 {{ask.replyCount}}</span>
-                </div>
-              </iv-col>
-            </iv-row>
-             <p class="desc">{{ask.description | textLineBreak(150) }}<a  @click="selectMenu('/'+ask.userName+'/ask/'+ask.id)"> 查看更多
-              <iv-icon type="arrow-right-b"></iv-icon>
-            </a>
-            </p>
-            <p class="operate_info">
-                <span class="publish-time"><a><iv-icon type="ios-create" ></iv-icon>  {{ask.createTime}} 来自</a></span>
-                <span class="userName"><a  @click="selectMenu('/'+ask.userName)"><iv-icon type="ios-contact"></iv-icon>  {{ask.userName}}   </a></span>
-                <span class="readings" style="float:right"><a ><iv-icon type="ios-eye-outline"></iv-icon> {{ask.readCount}} 浏览</a></span>
-            </p>
+            <div class="tags">
+              <iv-tag v-if="article.state===0" :color="article.state | mapTagColor"  type="border" ><a @click="adoption(article)">采纳</a></iv-tag>
+              <iv-tag v-if="article.state===1" :color="article.state | mapTagColor"  type="border" >已采纳</iv-tag>
+            </div>
+            <div class="desc">
+            <ask-page-content>
+              <article id="article-main-page"  slot="content" ref="article"
+                      v-html="article.contentFormat">
+              </article>
+            </ask-page-content>
+             </div>
+             <p class="operate_info">
+                    <span class="userName"><a  @click="selectMenu('/'+article.userName)"><iv-icon type="ios-contact"></iv-icon>  {{article.userName}}   </a></span>
+                    <span class="publish-time"><a><iv-icon type="ios-create" ></iv-icon>  {{article.createTime}} </a></span>
+                    <span class="likes" v-if=!article.vLike><a @click="likePost(article)"><iv-icon type="ios-thumbs-up"></iv-icon> {{article.likeCount}} 点赞</a></span>
+                    <span class="likes" v-if=article.vLike><a ><iv-icon type="ios-thumbs-up" color="#F78F8F"></iv-icon> {{article.likeCount}} 已赞</a></span>
+              </p>
+              <br>
           </div>
         </iv-col>
       </iv-row>
@@ -38,19 +31,56 @@
 
 <script type="text/ecmascript-6">
 import { mixin } from '@/utils'
+import AskPageContent from './AskPageContent'
 export default {
+  components: {
+    'ask-page-content': AskPageContent
+  },
   props: {
-    ask: {
+    article: {
       Type: Object
-    },
-    type: ''
+    }
   },
   mixins: [mixin],
   methods: {
     selectMenu (url) {
       console.log('url' + url)
       this.$router.push(url)
-      // .catch(data => {})
+    },
+    adoption (article) {
+      // 查询文章详情
+      this.$axios.get('reply/adoption', {
+        params: {
+          id: article.id
+        }
+      }).then(({data}) => {
+        if (data && data.code === '000000') {
+          this.$Message.success('采纳成功')
+          article.state = 1
+        } else {
+          this.$Message.error(data.msg)
+        }
+      })
+    },
+    // 点赞
+    likePost (post) {
+      this.$axios.get('/like/new/' + post.id, {
+        params: {
+          type: 4
+        }
+      }).then(({data}) => {
+        if (data && data.code === '000000') {
+          this.$Message.success(data.msg)
+          post.likeCount += 1
+          post.vLike = true
+        } else if (data && data.code === '000005') {
+          this.$Message.warning(data.msg)
+        } else {
+          this.$Message.warning(data.msg)
+        }
+      }).catch((error) => {
+        console.log(error)
+      })
     }
   }
 }
@@ -85,7 +115,7 @@ export default {
             margin-left 1px
             vertical-align top
             color $default-background-color
-            background #FB5145
+            background #FF3030
             cursor pointer
           a
             color $color-typegraphy-title
@@ -93,18 +123,6 @@ export default {
             &:hover
               color $color-typegraphy-title-hover
               text-decoration underline
-        span.special
-            border-radius $border-radius
-            font-size 15px
-            font-weight 700
-            line-height 30px
-            padding 8px 10px
-            margin-left 1px
-            vertical-align top
-            color $default-background-color
-            background #81C27E
-            cursor pointer
-            text-align center
         .info
           margin-top 10px
           font-size 14px
@@ -140,7 +158,6 @@ export default {
               text-decoration underline
         .operate_info
           margin-top 10px
-          margin-bottom  10px
           font-size 14px
           line-height 18px
           font-weight 200
@@ -153,6 +170,20 @@ export default {
               &:hover
                 color $color-main-primary
                 text-decoration underline
+        .operate_info_1
+          text-align right
+          font-size 14px
+          margin 15px 0
+          @media only screen and (max-width: 768px)
+            text-align left
+          span
+            margin-right 8px
+            + span
+              margin-left 8px
+            a
+              cursor pointer
+              &:hover
+                color $color-main-primary
       .img-wrapper
         padding-bottom: 85%
         width: 100%

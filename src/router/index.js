@@ -10,7 +10,8 @@ import CommonFooter from '@/components/footer/CommonFooter'
 // 首页
 import IndexeContent from '@/components/content/IndexContent'
 import BlogContent from '@/components/content/BlogContent'
-// import AskContent from '@/components/content/AskContent'
+import AskContent from '@/components/content/AskContent'
+import AddAskContent from '@/components/content/AddAskContent'
 import HomeContent from '@/components/content/HomeContent'
 import ArticleContent from '@/components/content/ArticleContent'
 import AskDetailContent from '@/components/content/AskDetailContent'
@@ -117,11 +118,23 @@ let router = new Router({
           name: 'Ask',
           components: {
             header: SimpleHeader,
-            content: test,
+            content: AskContent,
             footer: CommonFooter
           },
           meta: {
-            title: '问答 | Blog 创建你自己的博客'
+            title: '问答列表 | Blog 创建你自己的博客'
+          }
+        },
+        {
+          path: 'question',
+          name: 'Question',
+          components: {
+            header: SimpleHeader,
+            content: AddAskContent,
+            footer: CommonFooter
+          },
+          meta: {
+            title: '提问 | Blog 创建你自己的博客'
           }
         },
         {

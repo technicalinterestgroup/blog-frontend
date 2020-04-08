@@ -1,6 +1,6 @@
 <template>
   <div class="comment-cell">
-    <panel :title="'全部评论'">
+    <panel :title="'全部评论 '+comments.length">
       </panel>
       <br>
       <iv-form class='login-con' ref="commentOne" :model="mainform" :rules="rules">
@@ -116,9 +116,8 @@ export default {
           this.$axios.post('/comment/new', this.mainform).then(({data}) => {
             if (data.code === '000000') {
               this.$Message.success('评论成功')
-              this.mainform = {}
-              this.getCommentList(this.articleId)
-              console.log('comments' + JSON.stringify(this.comments))
+              this.getCommentList(this.mainform.articleId)
+              this.mainform.commentContent = ''
             } else if (data.code === '000005') {
               this.$Message.warning(data.msg)
             } else {

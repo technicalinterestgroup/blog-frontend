@@ -99,9 +99,9 @@ export default {
           this.$axios.post('/reply/new', this.article)
             .then(({data}) => {
               if (data.code === '000000') {
+                this.article = {}
                 this.$Message.success('回答成功')
                 this.$emit('refreshlist', this.article.askId)
-                this.article = {}
               } else {
                 this.$Message.error(data.msg)
               }

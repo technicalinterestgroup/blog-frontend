@@ -2,7 +2,7 @@
   <div class="article-list-content">
     <iv-row>
       <iv-col :xs="24" :sm="24" :md="24" :lg="17">
-          <blog-carousel></blog-carousel>
+          <ask-carousel></ask-carousel>
           <div class="layout-left">
           <br>
           <askListCell  v-for="ask in askList" :ask="ask" :key="ask.id"></askListCell>
@@ -12,6 +12,7 @@
       </iv-col>
       <iv-col :xs="0" :sm="0" :md="0" :lg="7">
         <div class="layout-right">
+          <iv-button @click="selectMenu('question')" style="width:100%;margin-bottom:10px;background-color:#1586C2;color :#FFFFFF;font-weight: bold;">我要提问</iv-button>
            <br>
           <new-article></new-article>
            <br>
@@ -19,9 +20,6 @@
            <br>
           <hot-read></hot-read>
            <br>
-          <friend-links style="margin-top:15px;"></friend-links>
-          <br>
-          <tag-wall style="margin-top: 15px;"></tag-wall>
         </div>
       </iv-col>
     </iv-row>
@@ -29,36 +27,22 @@
 </template>
 
 <script type="text/ecmascript-6">
-import ArticleListHeader from '@/components/views/Article/ArticleListHeader'
-import ArticlePageContent from '@/components/views/Article/ArticlePageContent'
-import ArticlePageFooter from '@/components/views/Article/ArticlePageFooter'
 import AskListCell from '@/components/views/Ask/AskListCell'
 import Recommend from '@/components/views/Recommend'
-import TagWall from '@/components/views/TagWall'
 import BrowseMore from '@/components/views/BrowseMore'
 import HotRead from '@/components/views/HotRead'
-import FriendLinks from '@/components/views/FriendLinks'
 import {DefaultFilterList} from '@/common/js/const'
-import SectionTitle from '@/components/views/SectionTitle/SectionTitle'
-import TitleMenuFilter from '@/components/views/SectionTitle/TitleMenuFilter'
 import NewArticle from '@/components/views/NewArticle'
-import BlogCarousel from '@/components/views/Carousel/BlogCarousel'
+import AskCarousel from '@/components/views/Carousel/AskCarousel'
 import merge from 'lodash/merge' // 合并对象工具
 export default {
   components: {
-    'article-list-header': ArticleListHeader,
-    'article-page-content': ArticlePageContent,
-    'article-page-footer': ArticlePageFooter,
     'askListCell': AskListCell,
     'recommend': Recommend,
-    'tag-wall': TagWall,
     'browse-more': BrowseMore,
     'hot-read': HotRead,
-    'friend-links': FriendLinks,
-    'section-title': SectionTitle,
-    'title-menu-filter': TitleMenuFilter,
     'new-article': NewArticle,
-    'blog-carousel': BlogCarousel
+    'ask-carousel': AskCarousel
   },
   data () {
     return {
@@ -144,6 +128,9 @@ export default {
         this.$refs.browseMore.stopLoading()
         console.log(error)
       })
+    },
+    selectMenu (url) {
+      this.$router.push('/' + url)
     }
   }
 }
