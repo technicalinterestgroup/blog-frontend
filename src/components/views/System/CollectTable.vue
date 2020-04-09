@@ -1,6 +1,14 @@
 <template>
+<!-- 收藏列表页面 -->
   <div class="article-cell" >
     <br>
+    <div>
+     <Tabs @on-click="getCollectionList">
+        <TabPane label="博客" icon="md-book" name="1"></TabPane>
+        <TabPane label="通告" icon="md-volume-up" name="3"></TabPane>
+        <TabPane label="问答" icon="ios-list-box" name="4"></TabPane>
+    </Tabs>
+    </div>
     <div  class="tableList">
        <noticeListCell v-for="notice in data6" :article="notice" :key="notice.id" @remove="remove"></noticeListCell>
     </div>
@@ -25,20 +33,23 @@ export default {
     return {
       pageParam: {
         currentPage: 1,
-        pageSize: 10
+        pageSize: 10,
+        type: 1
       },
       totalCount: 0,
-      queryParam: {},
-      data6: [],
-      msg: '赞了你的博文'
+      type: 1,
+      data6: []
     }
   },
   created () {
-    this.getWebsiteList()
+    this.getCollectionList(this.type)
   },
   methods: {
-    getWebsiteList (param) {
-      let params = merge(param, this.pageParam)
+    getCollectionList (type) {
+      if (type) {
+        this.pageParam.type = type
+      }
+      let params = merge(null, this.pageParam)
       this.$axios.get('/collection/list', {
         params
       }).then(({data}) => {
@@ -59,7 +70,7 @@ export default {
     },
     changepage (index) {
       this.pageParam.currentPage = index
-      this.getWebsiteList(null)
+      this.getCollectionList(null)
     },
     remove (data) {
       this.$Modal.confirm({
@@ -76,12 +87,12 @@ export default {
     delCollectionPost (post) {
       this.$axios.get('/collection/del/' + post.sourceId, {
         params: {
-          type: 1
+          type: post.type
         }
       }).then(({data}) => {
         if (data && data.code === '000000') {
           this.$Message.success('取消收藏')
-          this.getWebsiteList()
+          this.getCollectionList()
         } else if (data && data.code === '000005') {
           this.$Message.warning(data.msg)
         } else {

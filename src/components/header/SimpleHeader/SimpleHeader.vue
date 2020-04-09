@@ -118,7 +118,6 @@ export default {
   created () {
     this.keywords = this.$route.query.keywords
     this.userIsLoginFunction()
-    this.getNoticeCount()
   },
   watch: {
     $route (now, old) {
