@@ -41,7 +41,9 @@ import {
   Table,
   Switch,
   Submenu,
-  Page
+  Page,
+  Tabs,
+  TabPane
 } from 'view-design'
 // use
 Vue.use(mavonEditor)
@@ -83,6 +85,8 @@ Vue.component('iv-table', Table)
 Vue.component('iv-switch', Switch)
 Vue.component('Submenu', Submenu)
 Vue.component('Page', Page)
+Vue.component('Tabs', Tabs)
+Vue.component('TabPane', TabPane)
 Vue.prototype.$http = httpRequest // Ajax 请求方法
 Vue.prototype.$Modal = Modal
 Vue.prototype.$Message = Message
