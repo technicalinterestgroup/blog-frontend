@@ -1,5 +1,5 @@
 <template>
-  <div class="index-carousel">
+  <div class="index-carousel" v-if="carouselList.length>0">
    <iv-carousel autoplay>
        <iv-carousel-item  v-for="carousel in carouselList" :key="carousel.id">
             <div class="demo-carousel"><a  @click="jumpDetail(carousel.id)"><img :src="carousel.carouselUrl" :alt="carousel.title"></a></div>
