@@ -41,6 +41,9 @@ import BlogSet from '@/components/views/System/BlogSet'
 import CollectTable from '@/components/views/System/CollectTable'
 import LikeTable from '@/components/views/Notice/LikeTable'
 import CommentTable from '@/components/views/Notice/CommentTable'
+import Focus from '@/components/views/System/Focus'
+import Fans from '@/components/views/System/Fans'
+
 import test from '@/components/content/test'
 
 const [routerPush, routerReplace] = [Router.prototype.push, Router.prototype.replace]
@@ -333,6 +336,22 @@ let router = new Router({
               component: CollectTable,
               meta: {
                 title: '我的收藏 | VBlog 创建你自己的博客'
+              }
+            },
+            {
+              path: 'focus',
+              name: 'focus',
+              component: Focus,
+              meta: {
+                title: '我的关注 | VBlog 创建你自己的博客'
+              }
+            },
+            {
+              path: 'fans',
+              name: 'fans',
+              component: Fans,
+              meta: {
+                title: '我的粉丝 | VBlog 创建你自己的博客'
               }
             }
           ]

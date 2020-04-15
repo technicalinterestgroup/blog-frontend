@@ -26,11 +26,15 @@
           <p class="title">积分 ：<span class="special" title="积分">{{userInfo.integral}}</span></p>
         </iv-col>
       </iv-row>
-      <!-- <iv-row :gutter="2">
-        <iv-col :span="0">
-          <p class="title">积分 ：<span class="special" title="积分">{{userInfo.integral}}</span></p>
+     <iv-row v-if=focusIsShow>
+        <iv-col span="12">
+           <iv-button v-if=!userInfo.isFocus  @click="focus(userInfo)" type="error" style="width:90%;margin-top:10px">关注</iv-button>
+           <iv-button v-if=userInfo.isFocus @click="cancleFocus(userInfo)" type="Default" style="width:90%;margin-top:10px">已关注</iv-button>
         </iv-col>
-      </iv-row> -->
+        <iv-col span="12">
+           <iv-button @click="confirm()" type="success" style="width:90%;margin-top:10px" ghost>私信</iv-button>
+        </iv-col>
+      </iv-row>
     </div>
   </div>
 </template>
@@ -40,20 +44,32 @@ export default {
   data () {
     return {
       userInfo: {},
-      userName: '',
+      userName: this.$route.params.userName,
       nickName: '',
       integral: 0,
       userSummary: '',
       grade: 1,
-      photo: ''
+      photo: '',
+      loginUser: null,
+      focusIsShow: false
     }
   },
   created () {
-    this.getUserInfo(this.$route.params.userName)
+    this.userIsLoginFunction()
+    this.focusShow()
+    this.getUserInfo(this.userName)
   },
   methods: {
+    focusShow () {
+      if (this.loginUser.trim() !== this.userName.trim()) {
+        this.focusIsShow = true
+      }
+    },
     getUserInfo (userName) {
       this.$axios.get('/view/user/info/' + userName, {
+        params: {
+          loginUser: this.loginUser
+        }
       }).then(({data}) => {
         if (data && data.code === '000000') {
           this.userInfo = data.data
@@ -63,6 +79,51 @@ export default {
     selectMenu (url) {
       this.$router.push(url)
       // .catch(data => {})
+    },
+    focus (userInfo) {
+      this.$axios.get('/focus/save', {
+        params: {
+          userName: userInfo.userName
+        }
+      }).then(({data}) => {
+        if (data && data.code === '000000') {
+          this.$Message.success('关注成功')
+          userInfo.isFocus = true
+        } else {
+          this.$Message.console.warn(data.msg)
+        }
+      })
+    },
+    cancleFocus (userInfo) {
+      this.$axios.get('/focus/cancel', {
+        params: {
+          userName: userInfo.userName
+        }
+      }).then(({data}) => {
+        if (data && data.code === '000000') {
+          this.$Message.success('取消关注')
+          userInfo.isFocus = false
+        } else {
+          this.$Message.console.warn(data.msg)
+        }
+      })
+    },
+    confirm (userName) {
+      this.$Modal.confirm({
+        title: '提示信息',
+        content: '<p>功能开发中，敬请期待。。。</p>',
+        onOk: () => {
+        },
+        onCancel: () => {
+          // this.del(articleId)
+        }
+      })
+    },
+    userIsLoginFunction () {
+      if (localStorage.getItem('accessToken') && localStorage.getItem('userInfo')) {
+        var jsonObj = JSON.parse(localStorage.getItem('userInfo'))
+        this.loginUser = jsonObj.userName
+      }
     }
   }
 
